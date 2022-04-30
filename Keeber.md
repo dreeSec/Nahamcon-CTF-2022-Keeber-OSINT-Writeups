@@ -1,6 +1,7 @@
 # Challenges: Keeber
 Category: **OSINT**  
 Difficulty: **Medium**  
+Authors: **matlac#2291, **  
 Points: **---**  
 Solves: **---**
 
@@ -9,34 +10,41 @@ Points: **---**
 Solves: **---**
 
 Challenge Description: 
+You have been applying to entry-level cybersecurity jobs focused on reconnaissance and open source intelligence (OSINT). Great news! You got an interview with a small cybersecurity company; the Keeber Security Group. Before interviewing, they want to test your skills through a series of challenges oriented around investigating the Keeber Security Group.
 
+The first step in your investigation is to find more information about the company itself. All we know is that the company is named Keeber Security Group and they are a cybersecurity startup. To start, help us find the person who registered their domain. The flag is in regular format.
 
-### Files
-```
-from Crypto.Util.number import getPrime, bytes_to_long, long_to_bytes
+### Approach
+Starting off we get this prompt that the Keeber Security Group about them wanting us to perform an investigation on them using our OSINT knowledge. We see that someone registered a domain, so step 1 should be finding this website. Not too hard after a quick google search for Keeber Security Group.
+![dfddd81bfe2ca1a3336a9b474ce48121](https://user-images.githubusercontent.com/74334127/166117283-c5340afc-305c-465c-b2ec-39c4bc33233f.png)
 
+We can use external websites to find out who registered the domain, such as [`whois.com`](https://www.whois.com).
 
-[RSA_Frustration output](https://github.com/drewd314/WolvSec-CTF-2022-Writeups/files/8358502/RSA_Frustration_-_output.2.txt)
-```
+<img src="https://user-images.githubusercontent.com/74334127/166116672-db875f99-f941-4bd1-b14f-b03eeb9c9abc.png" width=75% height=75%>
+
+flag: `flag{ef67b2243b195eba43c7dc797b75d75b}`
+
+## Keeber 2
+Points: **---**  
+Solves: **---**
+
+Challenge Description: 
+The Keeber Security Group is a new startup in its infant stages. The team is always changing and some people have left the company. The Keeber Security Group has been quick with changing their website to reflect these changes, but there must be some way to find ex-employees. Find an ex-employee through the group's website. The flag is in regular format.
+
+### Approach
+We can use external websites to find out who registered the domain, such as ‘whois.com’
+
+I started off looking at the Github for this one, and found a contributor named `Tiffany Douglas` who wasn’t on the `team` section of the website. However, I couldn't find the flag there. I then pivoted to the [Wayback Machine](https://web.archive.org/web/20220419212259/https://keebersecuritygroup.com/team/)  and noticed a snapshot was taken prior to the competition starting.
+
+![fc7db81a79f629225d300d9571b81bee](https://user-images.githubusercontent.com/74334127/166117044-c7a52e14-6828-48db-bd10-c179712bca0d.png)
+
+Looking at this, we can find the flag under Tiffany's name in the team section.
+![c5ff30eec6f06363b4af0f0cba508ad3](https://user-images.githubusercontent.com/74334127/166117077-b3087375-f645-4039-8957-37b96739adff.png)
+
+flag: `flag{cddb59d78a6d50905340a62852e315c9}`
+
+## Keeber 3
+Points: **---**  
+Solves: **---**
 ### Approach
 
-https://www.whois.com/whois/keebersecuritygroup.com![ca561a0dc02967e2676d08697aaedaca]
-
-![ca561a0dc02967e2676d08697aaedaca](https://user-images.githubusercontent.com/74334127/166116672-db875f99-f941-4bd1-b14f-b03eeb9c9abc.png)
-
-
-
-```
-from Crypto.Util.number import long_to_bytes
-
-```
-
-flag: `wsc{s4g3m4th_i5_5up3r_co0l!}`
-
-
-
-### Notes
-
-The initial idea was to make the optimization needed to find the flag, however this would likely lead to people with very great computing power to be able to still use the sole DFS algorithm without the e optimization. Therefore, the optimization is just a bonus idea. It is most useful when trying to replicate the results of the challenge. Sage remembers factors, so when running the scripts a second time the non-optimized one takes a minute whereas the optimized one takes 5 seconds on my machine. Maybe someone could force this optimization in a challenge of their own! If 10 bits were added instead of 9 then we would not even need a DFS, and could do it linear with the smallest candidate decryption each time. However, the idea for this challenge was to incorporate a DFS but to be able to use the optimization as assistance.
-
-Will add more mathmatical explinations for this algorithm soon!
