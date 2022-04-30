@@ -1,13 +1,12 @@
-# Challenges: Keeber
+# Challenges: Keeber (WIP 5-8 will be added later today!)
 Category: **OSINT**  
 Difficulty: **Medium**  
 Authors: **matlac#2291, **  
-Points: **---**  
-Solves: **---**
+Points: **1842**  
 
 ## Keeber 1
-Points: **---**  
-Solves: **---**
+Points: **50**  
+Solves: **1246**
 
 Challenge Description: 
 You have been applying to entry-level cybersecurity jobs focused on reconnaissance and open source intelligence (OSINT). Great news! You got an interview with a small cybersecurity company; the Keeber Security Group. Before interviewing, they want to test your skills through a series of challenges oriented around investigating the Keeber Security Group.
@@ -25,8 +24,8 @@ We can use external websites to find out who registered the domain, such as [`wh
 flag: `flag{ef67b2243b195eba43c7dc797b75d75b}`
 
 ## Keeber 2
-Points: **---**  
-Solves: **---**
+Points: **50**  
+Solves: **890**
 
 Challenge Description: 
 The Keeber Security Group is a new startup in its infant stages. The team is always changing and some people have left the company. The Keeber Security Group has been quick with changing their website to reflect these changes, but there must be some way to find ex-employees. Find an ex-employee through the group's website. The flag is in regular format.
@@ -42,9 +41,53 @@ Looking at this, we can find the flag under Tiffany's name in the team section.
 ![c5ff30eec6f06363b4af0f0cba508ad3](https://user-images.githubusercontent.com/74334127/166117077-b3087375-f645-4039-8957-37b96739adff.png)
 
 flag: `flag{cddb59d78a6d50905340a62852e315c9}`
+The ex-employee you found was fired for "committing a secret to public github repositories". Find the committed secret, and use that to find confidential company information. The flag is in regular format.
 
 ## Keeber 3
-Points: **---**  
-Solves: **---**
+Points: **50**  
+Solves: **377**
+
+Challenge Description: 
+The ex-employee you found was fired for "committing a secret to public github repositories". Find the committed secret, and use that to find confidential company information. The flag is in regular format.
+![19336fc8efdf87b56077c83c2c61bf99](https://user-images.githubusercontent.com/74334127/166118217-6c8e1717-33aa-4862-b203-a346fd89cdef.png)
+
 ### Approach
+To find the committed secret, I turned to github to see if there were any commits by Tiffany that were undone. Under the `.gitignore` in `security-evaluation-workflow` we see a secret that Tiffany must have added by mistake. 
+
+![e2ee5ce329729625bccb7edba74edea2](https://user-images.githubusercontent.com/74334127/166118066-38906403-938a-4c07-937e-3e40aeef4933.png)
+
+I wasn’t sure what asana was at first, but after googling it seems that it’s some software that Keeber uses. I went to [asana documentation](https://developers.asana.com/docs)  to see what we could do with this and came across a way to access the api:
+`curl https://app.asana.com/api/1.0/users/me \
+  -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a"`
+
+Replacing the string with the one in the github, we get the flag.
+![19336fc8efdf87b56077c83c2c61bf99](https://user-images.githubusercontent.com/74334127/166118348-0c4e0d26-97b9-4987-9bf4-34e3c57fe753.png)
+
+flag: `flag{49305a2a9dcc503cb2b1fdeef8a7ac04}`
+
+## Keeber 4
+Points: **318**  
+Solves: **192**
+
+Challenge Description: 
+The ex-employee also left the company password database exposed to the public through GitHub. Since the password is shared throughout the company, it must be easy for employees to remember. The password used to encrypt the database is a single lowercase word somehow relating to the company. Make a custom word list using the Keeber Security Groups public facing information, and use it to open the password database The flag is in regular format.
+
+(Hint: John the Ripper may have support for cracking .kdbx password hashes!)
+
+### Approach
+Finding the password database wasn't hard, as it's under `password-manager` in the github. After some research, we find that the `.kdbx` extension is a Keepass database hash. Following [this github](https://github.com/patecm/cracking_keepass) we can crack this keepass using John the Ripper and Hashcat together, Using `keepass2john` we can get a hash file that is readable. 
+
+The hardest part for me in this challenge was creating a good word list to use. I initially used [CeWL](https://github.com/digininja/CeWL) to compile a list of words on the website and github, then turned them to lowercase and removed duplicates. The correct password was in here, but the wordlist was 30k+ words and hashcat would not have finished in time.
+
+I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “ We strive to achieve `minivivi` and `clainebookahl` through this.”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds,
+
+![f4c9edcf7ceb6e6e3bf675f1e5b2227b](https://user-images.githubusercontent.com/74334127/166119070-a2d3873c-d61f-4a67-a611-f01b6ac78e6c.png)
+![7090d9a8a10c75d4e8ab2aa3c5213a0d (1)](https://user-images.githubusercontent.com/74334127/166119075-0a0619b3-facb-49f5-bb14-4997fbde9231.png)
+
+Using Keepass and opening the .kdbx file with `craccurrelss` we get access to the info. If we perform auto-type on an entry, we get the flag.
+
+https://user-images.githubusercontent.com/74334127/166119498-51880a70-baac-4c4a-ad38-df6661b023af.mp4
+
+flag: `flag{9a59bc85ebf02d5694d4b517143efba6}`
+
 
