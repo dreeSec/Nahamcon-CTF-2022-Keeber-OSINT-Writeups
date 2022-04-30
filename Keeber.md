@@ -5,6 +5,8 @@ Points: **---**
 Solves: **---**
 
 ## Keeber 1
+Points: **---**  
+Solves: **---**
 
 Challenge Description: 
 
@@ -15,17 +17,14 @@ from Crypto.Util.number import getPrime, bytes_to_long, long_to_bytes
 
 
 [RSA_Frustration output](https://github.com/drewd314/WolvSec-CTF-2022-Writeups/files/8358502/RSA_Frustration_-_output.2.txt)
-
+```
 ### Approach
 
-**Step 1:**
-We need all p and q values of the Ns. This can take a long time to generate since the largest N is 199 digits long. To accommodate for this, I uploaded the factors to [FactorDB](http://factordb.com/). An algorithm that fetches the primes from factor DB can be used, or just manually doing it since there are only 27 Ns to factor.
+https://www.whois.com/whois/keebersecuritygroup.com![ca561a0dc02967e2676d08697aaedaca]
+(https://user-images.githubusercontent.com/74334127/166116645-546f8bf1-b4d8-45d8-9233-c70d68d27c9d.png)
 
-**Step 2:**
-We are given the encrypted ciphertext after 27 encryptions, so we have to start by using the largest N's p and q values and the nth root algorithm to get possible p and q roots. We use the Chinese remainder theorem with the p and q roots to give us possible candidate decryptions, for which there will be e^2 of (12769 in this case). 
 
-**Step 3:**
-We are then going to have to construct an algorithm to keep recursing through the possible candidate decryptions, using the correct p and q values based on the depth of the recursion. A depth first search (DFS) is most useful here to get the flag quicker. Using [OPz qt's](https://github.com/christheyankee) DFS Sage Script we can get the flag!
+
 
 ```
 from Crypto.Util.number import long_to_bytes
