@@ -1,7 +1,7 @@
 # Challenges: Keeber (WIP 5-8 will be added later today!)
 Category: **OSINT**  
 Difficulty: **Medium**  
-Authors: **matlac#2291, **  
+Authors: `@matlac#2291, @Gary#4657`
 Points: **1842**  
 
 ## Keeber 1
