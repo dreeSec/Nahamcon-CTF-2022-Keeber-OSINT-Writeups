@@ -1,4 +1,4 @@
-# Challenges: Keeber (WIP 5-8 will be added later today!)
+# Challenges: Keeber (WIP 5-8 will be expanded later today!)
 Category: **OSINT**  
 Difficulty: **Medium**  
 Authors: `@matlac#2291, @Gary#4657`  
@@ -92,3 +92,9 @@ flag: `flag{9a59bc85ebf02d5694d4b517143efba6}`
 
 
 (WIP 5-8 will be added later today!)
+Short descriptions while i have time:
+
+For 5 needed to add .patch to end of commit url to get email.
+For 6 get to tiff instagram, use 1st picture and her github (or 207 area code on website) to realize it was Maine. The "city" is portland, find ferry on google maps, find hotel with a courtyard close by, find yelp review.
+For 7 use tool (epieos.com) to find name was Issac Anderson, and that a myspace account was registered with that email. Go to myspace, search Issac Anderson, look through like 100+ profiles, one of them has flag (https://myspace.com/cereal_lover1990).
+For 8 use Sherlock tool on cereal_lover1990, see that pastebin account has that name, pastebin has flag at bottom.
