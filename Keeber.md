@@ -62,7 +62,7 @@ To find the committed secret, I turned to github to see if there were any commit
 
 ![e2ee5ce329729625bccb7edba74edea2](https://user-images.githubusercontent.com/74334127/166118066-38906403-938a-4c07-937e-3e40aeef4933.png)
 
-I wasn’t sure what asana was at first, but after googling it seems that it’s some software that Keeber uses. I went to [asana documentation](https://developers.asana.com/docs)  to see what we could do with this and came across a way to access the api: 
+I wasn’t sure what asana was at first, but after googling it seems that it’s some software that Keeber uses. I went to the [asana documentation](https://developers.asana.com/docs) to see what we could do with this and came across a way to access the api: 
 
 ```
 curl https://app.asana.com/api/1.0/users/me \  
@@ -85,11 +85,11 @@ The ex-employee also left the company password database exposed to the public th
 (Hint: John the Ripper may have support for cracking .kdbx password hashes!)
 
 ### Approach
-Finding the password database wasn't hard, as it's under `password-manager` in the github. After some research, we find that the `.kdbx` extension is a Keepass database hash. Following [this github](https://github.com/patecm/cracking_keepass) we can crack this keepass using John the Ripper and Hashcat together, Using `keepass2john` we can get a hash file that is readable. 
+Finding the password database wasn't hard, as it's under `password-manager` in the github. After some research, we find that the `.kdbx` extension is a Keepass database hash. Following the steps in [this github](https://github.com/patecm/cracking_keepass) we can crack this keepass using John the Ripper and Hashcat together. With `keepass2john` in John the Ripper we can get a hash file that is readable by hashcat. You must remove the file name from the start of the hash file by editing it or with `| grep -o "$keepass$.*"`.
 
 The hardest part for me in this challenge was creating a good word list to use. I initially used [CeWL](https://github.com/digininja/CeWL) to compile a list of words on the website and github, then turned them to lowercase and removed duplicates. The correct password was in here, but the wordlist was 30k+ words and hashcat would not have finished in time.
 
-I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “We strive to achieve *minivivi* and *clainebookahl* through this”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds,
+I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “We strive to achieve *minivivi* and *clainebookahl* through this”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds.
 
 <img src="https://user-images.githubusercontent.com/74334127/166167290-64a40429-ebda-49cf-9d6e-38e1dca84df8.png" width=80% height=80%>
 <img src="https://user-images.githubusercontent.com/74334127/166167288-81ad1cfb-9533-4434-a6e8-3279a915d039.png" width=80% height=80%>
@@ -108,7 +108,7 @@ Challenge Description:
 The ex-employee in focus made other mistakes while using the company's GitHub. All employees were supposed to commit code using the keeber-@protonmail.com email assigned to them. They made some commits without following this practice. Find the personal email of this employee through GitHub. The flag is in regular format.
 
 ### Approach
-The challenge description tells us that we should look in the company’s github to find the email of Tiffany. My initial thought is that she may have made a commit on another public GitHub repo. However, the Keeber repository is the only public one she has made commits to. 
+The challenge description tells us that we should look in the company’s GitHub to find the email of Tiffany. My initial thought is that she may have made a commit on another public GitHub repo. However, the Keeber repository is the only public one she has made commits to. 
 
 I then did some research to see if there was a way to get the email of an account through GitHub and came across [this article](https://www.nymeria.io/blog/how-to-manually-find-email-addresses-for-github-users). Following these steps, I went through each of Tiffany’s commits in the GitHub repo adding `.patch` to all of the urls. Eventually, we get to [this commit](https://github.com/keebersecuritygroup/security-evaluation-workflow/commit/b25ed7f5aa72f88c0145a3832012546360c2ffc2) and get the following output when adding `.patch`:
 
@@ -139,16 +139,17 @@ After all of the damage the ex-employee's mistakes caused to the company, the Ke
 The hint tells us that we need to use `tif.hearts.science@gmail.com` to eventually find this new workplace. I tried to use [epieos](https://epieos.com/) to get more information. This only gives us her name and that she has a GitHub account, which we already knew. Since we are trying to find their new workplace, I figured they may have a social media account that would allow us to find this place (similar to a recent [OSINT](https://github.com/drewd314/WolvSec-CTF-2022-Writeups/blob/main/OSINT/Where%20in%20the%20world.md) I made for WolvSecCon). Linkedin produced no results, and I thought Instagram was not either. None of the Tiffany Douglas accounts on instagram seemed to be her, but searching `tif.hearts.science` we find an account that is hers. 
 
 <img src="https://user-images.githubusercontent.com/74334127/166164944-7c0d9bf5-1c1f-47cf-9f4c-b090f0fbadfe.png" width=80% height=80%>
-<img src="https://user-images.githubusercontent.com/74334127/166165087-5c9873af-dfc0-45a1-abd2-cacbbd26b384.jpg" width=80% height=80%>
+<img src="https://user-images.githubusercontent.com/74334127/166165087-5c9873af-dfc0-45a1-abd2-cacbbd26b384.jpg" width=100% height=100%>
 
 I started with this first post to find her work location. We can see a Google watermark on it, so I set out to find where this could be on Google Maps. On Tiffany's GitHub profile, she states that she is from Maine. This can also be deduced from the 207 area code on Keeber's website. Searching on the coast of Google Maps, we can easily see ferry routes denoted by blue dashed lines. I eliminated the minor cities in Maine and figured it must be Portland, which would also be why she called it “the city.”
-<img src="https://user-images.githubusercontent.com/74334127/166165214-c416558e-0fa2-4160-ae89-feecc130ff8a.png" width=60% height=60%>
+
+<img src="https://user-images.githubusercontent.com/74334127/166165214-c416558e-0fa2-4160-ae89-feecc130ff8a.png" width=80% height=80%>
 
 After scanning these ports I eventually came across [this one](https://www.google.com/maps/@43.6568766,-70.2480553,3a,75y,178.19h,87.69t/data=!3m7!1e1!3m5!1seNEkVm0dTjxhVTHSt2B5Qw!2e0!5s20151101T000000!7i16384!8i8192) that looked like the image, and sure enough if we turn the date back to 2015 we see the same image that was on her instagram.
 
 <img src="https://user-images.githubusercontent.com/74334127/166165291-de46434b-a2c8-4dca-9e94-73b975a878f0.jpg" width=80% height=80%>
 
-From her first instagram post I see that there is a courtyard at the place she works at, so I start scanning for courtyards in portland on Google Maps to see if any of them had similar photospheres. This was not getting me anywhere, so I looked more at her Instagram and figured she works at a hotel from the “but the pool is indoors” meme. In hindsight, the bedding posts and courtyard were also indications of this. I searched for hotels in Portland and found one with a courtyard in satellite mode.
+From her first instagram post I see that there is a courtyard at the place she works at, so I start scanning for courtyards in Portland on Google Maps to see if any of them had similar photospheres. This was not getting me anywhere, so I looked more at her Instagram and figured she works at a hotel from the “but the pool is indoors” meme. In hindsight, the bedding Instagram posts were also indications of this. I searched for hotels in Portland and found one with a courtyard in satellite mode.
 
 <img src="https://user-images.githubusercontent.com/74334127/166165784-de6b7aa7-6ffc-4a77-9de4-374901fdfaa2.jpg" width=40% height=40%>
 
@@ -177,7 +178,7 @@ Thankfully, Princess of the Ugbo Kingdom Ayofemi Akinruntan’s valiant attempt 
 
 I thought about doing forensics work on the pdf, but since this was an OSINT challenge and the description said *use the email* I didn’t bother doing anything past looking at the metadata, to which there was nothing. The note saying we did not need to pay for any OSINT tool hinted that we should be able to use a public one, so I went back to [epieos](https://epieos.com/). This gave us the information that this gmail is registered with the name `Issac Anderson` and with [holehe](https://github.com/megadose/holehe) we know that they have a Myspace account created with this email. 
 
-<img src="https://user-images.githubusercontent.com/74334127/166166191-9254c39e-6707-4907-999b-f822ba6ccc3c.pn" width=75% height=75%>
+<img src="https://user-images.githubusercontent.com/74334127/166166191-9254c39e-6707-4907-999b-f822ba6ccc3c.png" width=75% height=75%>
 
 I looked for a while to see if there was a way to find a Myspace account with just an email, but could not find anything. I then searched for Issac Anderson on Myspace and checked the ones that showed up but did not see a flag. I thought for a bit that maybe holehe was wrong or someone else registered an account with that email, but looking at the pdf again I figured the mention of Justin Bieber was a hint that we should in fact be looking for a Myspace account, since people like to share music there. I then realized I did not look through all the Issac Andersons, of which many, many results showed up.
 
@@ -197,7 +198,7 @@ Challenge Description:
 Despite all of the time we spend teaching people about phishing, someone at Keeber fell for one! Maria responded to the email and sent some of her personal information. Pivot off of what you found in the previous challenge to find where Maria's personal information was posted. The flag is in regular format.
 
 ### Approach
-This was a relatively straightforward challenge, it just has low solves since it was dependent on `Keeber 7`. From the Myspace account the url leaves us with their username `cereal_lover1990`. The [Sherlock tool](https://github.com/sherlock-project/sherlock) is great for finding accounts connected to usernames. 
+From the Myspace account in `Keeber 7` the url leaves us with their username `cereal_lover1990`. The [Sherlock tool](https://github.com/sherlock-project/sherlock) is great for finding accounts connected to usernames. 
 
 ![583b57daab7472adfbb762c4c053083d](https://user-images.githubusercontent.com/74334127/166166799-3f85b730-ed80-46ae-a38a-4d8164398b8d.png)
 
