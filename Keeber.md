@@ -1,4 +1,4 @@
-# Challenges: Keeber (WIP 5-8 will be expanded later today!)
+# Challenge: Keeber
 Category: **OSINT**  
 Difficulty: **Medium**  
 Authors: `@matlac#2291, @Gary#4657`  
