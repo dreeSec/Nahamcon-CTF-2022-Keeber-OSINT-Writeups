@@ -86,7 +86,7 @@ Finding the password database wasn't hard, as it's under `password-manager` in t
 
 The hardest part for me in this challenge was creating a good word list to use. I initially used [CeWL](https://github.com/digininja/CeWL) to compile a list of words on the website and github, then turned them to lowercase and removed duplicates. The correct password was in here, but the wordlist was 30k+ words and hashcat would not have finished in time.
 
-I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “ We strive to achieve `minivivi` and `clainebookahl` through this.”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds,
+I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “We strive to achieve *minivivi* and *clainebookahl* through this”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds,
 
 ![f4c9edcf7ceb6e6e3bf675f1e5b2227b](https://user-images.githubusercontent.com/74334127/166119070-a2d3873c-d61f-4a67-a611-f01b6ac78e6c.png)
 ![7090d9a8a10c75d4e8ab2aa3c5213a0d (1)](https://user-images.githubusercontent.com/74334127/166119075-0a0619b3-facb-49f5-bb14-4997fbde9231.png)
@@ -168,15 +168,15 @@ Multiple employees have gotten strange phishing emails from the same phishing sc
 
 
 ### Approach
-Thankfully, Princess of the Ugbo Kingdom Ayofemi Akinruntan’s valiant attempt to get Keeber to donate to him and Sir. Justin Beiber did not trick them. However, they did leave their email `cheerios.fanatic1941@gmail.com` which we may be able to use to figure out whoever sent this. 
+Thankfully, Princess of the Ugbo Kingdom Ayofemi Akinruntan’s valiant attempt to get Keeber to donate to him and Sir. Beiber did not trick them. However, they did leave their email `cheerios.fanatic1941@gmail.com` which we may be able to use to figure out whoever sent this. 
 
 ![4dd574955f91a44fb11f0d5745a09cb4](https://user-images.githubusercontent.com/74334127/166166538-bfc32900-2368-46e6-912c-df515ffa7c7a.png)
 
-I thought about doing forensics work on the pdf, but since this was an OSINT challenge and the description said `use the email` I didn’t bother doing anything past looking at the metadata, to which there was nothing. The note saying we did not need to pay for any OSINT tool hinted that we should be able to use a public one, so I went back to [epieos](https://epieos.com/). This gave us the information that this gmail is registered with the name `Issac Anderson` and with [holehe](https://github.com/megadose/holehe) we know that they have a Myspace account created with this email. 
+I thought about doing forensics work on the pdf, but since this was an OSINT challenge and the description said *use the email* I didn’t bother doing anything past looking at the metadata, to which there was nothing. The note saying we did not need to pay for any OSINT tool hinted that we should be able to use a public one, so I went back to [epieos](https://epieos.com/). This gave us the information that this gmail is registered with the name `Issac Anderson` and with [holehe](https://github.com/megadose/holehe) we know that they have a Myspace account created with this email. 
 
 ![6b88c8357c922d85ff8d00d051958282](https://user-images.githubusercontent.com/74334127/166166191-9254c39e-6707-4907-999b-f822ba6ccc3c.png)
 
-I looked for a while to see if there was a way to find a Myspace account with just an email, but could not find anything. I then searched for Issac Anderson on Myspace and checked the ones that showed up but did not see a flag. I thought for a bit that maybe holehe was wrong or someone else registered an account with that email, but looking at the pdf again I figured the mention of Justin Bieber was a hint that we should in fact be looking for a Myspace account, since people like to share music there. I realized I did not look through all the Issac Andersons, of which many, many results showed up.
+I looked for a while to see if there was a way to find a Myspace account with just an email, but could not find anything. I then searched for Issac Anderson on Myspace and checked the ones that showed up but did not see a flag. I thought for a bit that maybe holehe was wrong or someone else registered an account with that email, but looking at the pdf again I figured the mention of Justin Bieber was a hint that we should in fact be looking for a Myspace account, since people like to share music there. I then realized I did not look through all the Issac Andersons, of which many, many results showed up.
 
 ![c0c7ccafd3cfc558706e9012e202fec6](https://user-images.githubusercontent.com/74334127/166166417-d668a3ee-a4e7-4afe-9525-a9616bcc41f2.png)
 
@@ -194,14 +194,14 @@ Challenge Description:
 Despite all of the time we spend teaching people about phishing, someone at Keeber fell for one! Maria responded to the email and sent some of her personal information. Pivot off of what you found in the previous challenge to find where Maria's personal information was posted. The flag is in regular format.
 
 ### Approach
+This was a relatively straightforward challenge, it just has low solves since it was dependent on `Keeber 7`. From the Myspace account the url leaves us with their username `cereal_lover1990`. The [Sherlock tool](https://github.com/sherlock-project/sherlock) is great for finding accounts connected to usernames. 
 
+![583b57daab7472adfbb762c4c053083d](https://user-images.githubusercontent.com/74334127/166166799-3f85b730-ed80-46ae-a38a-4d8164398b8d.png)
 
-flag: ` `
+A lot of the results that showed up like CapFriendly show up for most searches but don’t actually have an account linked to that username. However, Pastebin doesn’t normally show up, and that seems like a great place to post personal information. Going to the *Chump list* on [their pastebin](https://pastebin.com/u/cereal_lover1990), we can find the flag in Maria’s personal information.
 
-(WIP 5-8 will be added later today!)
-Short descriptions while i have time:
+![df6e0e856f47a46170f5090b26eb0f17](https://user-images.githubusercontent.com/74334127/166166818-b0685f93-6177-4caf-b7ea-311d55809175.png)
 
-For 5 needed to add .patch to end of one of her committs url to get email.  
-For 6 get to tif.hearts.science instagram, use 1st picture and her github (or 207 area code on website) to realize it was Maine. The "city" is portland, find ferry on google maps, find hotel with a courtyard close by (20 min walking distance), find [yelp review](https://www.yelp.com/biz/residence-inn-by-marriott-portland-downtown-waterfront-portland).  
-For 7 use tool (epieos.com) to find name was Issac Anderson, and that a myspace account was registered with that email. Go to myspace, search Issac Anderson, look through like 100+ profiles, one of them has flag (https://myspace.com/cereal_lover1990).  
-For 8 use Sherlock tool on cereal_lover1990, see that pastebin account has that name, [pastebin](https://pastebin.com/u/cereal_lover1990) has flag at bottom.
+flag: `flag{70b5a5d461d8a9c5529a66fa018ba0d0}`
+
+Seems like we’re ready for that interview now ;)
