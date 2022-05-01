@@ -174,19 +174,19 @@ Multiple employees have gotten strange phishing emails from the same phishing sc
 ### Approach
 Thankfully, Princess of the Ugbo Kingdom Ayofemi Akinruntan’s valiant attempt to get Keeber to donate to him and Sir. Beiber did not trick them. However, they did leave their email `cheerios.fanatic1941@gmail.com` which we may be able to use to figure out whoever sent this. 
 
-![4dd574955f91a44fb11f0d5745a09cb4](https://user-images.githubusercontent.com/74334127/166166538-bfc32900-2368-46e6-912c-df515ffa7c7a.png)
+<img src="https://user-images.githubusercontent.com/74334127/166166538-bfc32900-2368-46e6-912c-df515ffa7c7a.png" width=75% height=75%>
 
 I thought about doing forensics work on the pdf, but since this was an OSINT challenge and the description said *use the email* I didn’t bother doing anything past looking at the metadata, to which there was nothing. The note saying we did not need to pay for any OSINT tool hinted that we should be able to use a public one, so I went back to [epieos](https://epieos.com/). This gave us the information that this gmail is registered with the name `Issac Anderson` and with [holehe](https://github.com/megadose/holehe) we know that they have a Myspace account created with this email. 
 
-![6b88c8357c922d85ff8d00d051958282](https://user-images.githubusercontent.com/74334127/166166191-9254c39e-6707-4907-999b-f822ba6ccc3c.png)
+<img src="https://user-images.githubusercontent.com/74334127/166166191-9254c39e-6707-4907-999b-f822ba6ccc3c.pn" width=75% height=75%>
 
 I looked for a while to see if there was a way to find a Myspace account with just an email, but could not find anything. I then searched for Issac Anderson on Myspace and checked the ones that showed up but did not see a flag. I thought for a bit that maybe holehe was wrong or someone else registered an account with that email, but looking at the pdf again I figured the mention of Justin Bieber was a hint that we should in fact be looking for a Myspace account, since people like to share music there. I then realized I did not look through all the Issac Andersons, of which many, many results showed up.
 
-![c0c7ccafd3cfc558706e9012e202fec6](https://user-images.githubusercontent.com/74334127/166166417-d668a3ee-a4e7-4afe-9525-a9616bcc41f2.png)
+<img src="https://user-images.githubusercontent.com/74334127/166166417-d668a3ee-a4e7-4afe-9525-a9616bcc41f2.png" width=75% height=75%>
 
 I went through opening all of them and quickly looked through to see if I found the right one. Sure enough, the flag showed up on one of them.
 
-![2d185efe1fd8906b7fec6c61d85357cc](https://user-images.githubusercontent.com/74334127/166166447-03bb0a63-fee0-498a-b615-33cbb1aea682.jpg)
+<img src="https://user-images.githubusercontent.com/74334127/166166447-03bb0a63-fee0-498a-b615-33cbb1aea682.jpg" width=80% height=80%>
 
 flag: `flag{4a7e2fcd7f85a315a3914197c8a20f0d}`
 
