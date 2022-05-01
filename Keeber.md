@@ -133,6 +133,20 @@ After all of the damage the ex-employee's mistakes caused to the company, the Ke
 (Hint: You will need to pivot off of the email found in the past challenge!)
 
 ### Approach
+The hint tells us that we need to use `tif.hearts.science@gmail.com` to eventually find this new workplace. I tried to use [epieos](https://epieos.com/) to get more information. This only gives us her name and that she has a GitHub account, which we already knew. Since we are trying to find their new workplace, I figured they may have a social media account that would allow us to find this place (similar to a recent [OSINT](https://github.com/drewd314/WolvSec-CTF-2022-Writeups/blob/main/OSINT/Where%20in%20the%20world.md) I made for WolvSecCon). Linkedin produced no results, and I thought Instagram was not either. None of the Tiffany Douglas accounts on instagram seemed to be her, but searching `tif.hearts.science` we find an account that is hers. 
+
+
+![17673cd2f1ebb0661adcb0d9b6114b9c](https://user-images.githubusercontent.com/74334127/166164944-7c0d9bf5-1c1f-47cf-9f4c-b090f0fbadfe.png)
+![467c852a900004bc85f373585b6ca576](https://user-images.githubusercontent.com/74334127/166165087-5c9873af-dfc0-45a1-abd2-cacbbd26b384.jpg)
+
+I started with this first post to find her work location. We can see a Google watermark on it, so I set out to find where this could be on Google Maps. On Tiffany's GitHub profile, she states that she is from Maine. This can also be deduced from the 207 area code on Keeber's website. Searching on the coast of Google Maps, we can easily see ferry routes denoted by blue dashed lines. I eliminated the minor cities in Maine and figured it must be Portland, which would also be why she called it “the city.”
+![600cbf92894ce9121ee6a7476b30f9ee](https://user-images.githubusercontent.com/74334127/166165214-c416558e-0fa2-4160-ae89-feecc130ff8a.png)
+After scanning these ports I eventually came across [this one](https://www.google.com/maps/@43.6568766,-70.2480553,3a,75y,178.19h,87.69t/data=!3m7!1e1!3m5!1seNEkVm0dTjxhVTHSt2B5Qw!2e0!5s20151101T000000!7i16384!8i8192) that looked like the image, and sure enough if we turn the date back to 2015 we see the same image that was on her instagram.
+
+![10ae1877d8273f57cde488ae9f8f6eb9](https://user-images.githubusercontent.com/74334127/166165291-de46434b-a2c8-4dca-9e94-73b975a878f0.jpg)
+From her first instagram post I see that there is a courtyard at the place she works at, so I start scanning for courtyards in portland on Google Maps to see if any of them had similar photospheres. This was not getting me anywhere, so I looked more at her Instagram and figured she works at a hotel from the “but the pool is indoors” meme. In hindsight, the bedding posts and courtyard were also indications of this. I searched for hotels in Portland and found one with a courtyard in satellite mode.
+![c05cfd1be468f04145ff038ae94c7d16](https://user-images.githubusercontent.com/74334127/166165538-7f0ddfaa-a65f-4dd7-b622-a6af105901fc.png)
+
 flag: ` `
 
 ## Keeber 7
