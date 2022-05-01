@@ -105,7 +105,23 @@ Challenge Description:
 The ex-employee in focus made other mistakes while using the company's GitHub. All employees were supposed to commit code using the keeber-@protonmail.com email assigned to them. They made some commits without following this practice. Find the personal email of this employee through GitHub. The flag is in regular format.
 
 ### Approach
-flag: ` `
+The challenge description tells us that we should look in the company’s github to find the email of Tiffany. My initial thought is that she may have made a commit on another public GitHub repo. However, the Keeber repository is the only public one she has made commits to. 
+
+I then did some research to see if there was a way to get the email of an account through GitHub and came across [this article](https://www.nymeria.io/blog/how-to-manually-find-email-addresses-for-github-users). Following these steps, I went through each of Tiffany’s commits in the GitHub repo adding `.patch` to all of the urls. Eventually, we get to [this commit](https://github.com/keebersecuritygroup/security-evaluation-workflow/commit/b25ed7f5aa72f88c0145a3832012546360c2ffc2) and get the following output when adding `.patch`:
+
+```
+From b25ed7f5aa72f88c0145a3832012546360c2ffc2 Mon Sep 17 00:00:00 2001
+From: flag{2c90416c24a91a9e1eb18168697e8ff5} <tif.hearts.science@gmail.com>
+Date: Wed, 20 Apr 2022 22:46:09 -0400
+Subject: [PATCH] started code_reviews.txt
+
+---
+ code_reviews.txt | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+...
+```
+
+flag: `flag{2c90416c24a91a9e1eb18168697e8ff5}`
 
 ## Keeber 6
 Points: **368**  
