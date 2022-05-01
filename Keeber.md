@@ -49,7 +49,6 @@ Solves: **377**
 
 Challenge Description: 
 The ex-employee you found was fired for "committing a secret to public github repositories". Find the committed secret, and use that to find confidential company information. The flag is in regular format.
-![19336fc8efdf87b56077c83c2c61bf99](https://user-images.githubusercontent.com/74334127/166118217-6c8e1717-33aa-4862-b203-a346fd89cdef.png)
 
 ### Approach
 To find the committed secret, I turned to github to see if there were any commits by Tiffany that were undone. Under the `.gitignore` in `security-evaluation-workflow` we see a secret that Tiffany must have added by mistake. 
@@ -90,6 +89,51 @@ https://user-images.githubusercontent.com/74334127/166119498-51880a70-baac-4c4a-
 
 flag: `flag{9a59bc85ebf02d5694d4b517143efba6}`
 
+## Keeber 5
+Points: **50**  
+Solves: **573**
+
+Challenge Description: 
+The ex-employee in focus made other mistakes while using the company's GitHub. All employees were supposed to commit code using the keeber-@protonmail.com email assigned to them. They made some commits without following this practice. Find the personal email of this employee through GitHub. The flag is in regular format.
+
+### Approach
+flag: ` `
+
+## Keeber 6
+Points: **368**  
+Solves: **164**
+
+Challenge Description: 
+After all of the damage the ex-employee's mistakes caused to the company, the Keeber Security Group is suing them for negligence! In order to file a proper lawsuit, we need to know where they are so someone can go and serve them. Can you find the ex-employee’s new workplace? The flag is in regular format, and can be found in a recent yelp review of their new workplace.
+
+(Hint: You will need to pivot off of the email found in the past challenge!)
+
+### Approach
+flag: ` `
+
+## Keeber 7
+Points: **474**  
+Solves: **74**
+
+Challenge Description: 
+Multiple employees have gotten strange phishing emails from the same phishing scheme. Use the email corresponding to the phishing email to find the true identity of the scammer. The flag is in regular format.
+
+(Note: This challenge can be solved without paying for anything!)
+
+[keeber_7.pdf](https://github.com/drewd314/Nahamcon-CTF-2022-Keeeber-OSINT-Writeups/files/8599678/keeber_7.pdf)
+
+### Approach
+flag: ` `
+
+## Keeber 8
+Points: **482**  
+Solves: **62**
+
+Challenge Description: 
+Despite all of the time we spend teaching people about phishing, someone at Keeber fell for one! Maria responded to the email and sent some of her personal information. Pivot off of what you found in the previous challenge to find where Maria's personal information was posted. The flag is in regular format.
+
+### Approach
+flag: ` `
 
 (WIP 5-8 will be added later today!)
 Short descriptions while i have time:
