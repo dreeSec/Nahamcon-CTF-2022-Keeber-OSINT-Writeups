@@ -23,11 +23,11 @@ The first step in your investigation is to find more information about the compa
 
 ### Approach
 Starting off we get this prompt that the Keeber Security Group about them wanting us to perform an investigation on them using our OSINT knowledge. We see that someone registered a domain, so step 1 should be finding this website. Not too hard after a quick google search for Keeber Security Group.
-![dfddd81bfe2ca1a3336a9b474ce48121](https://user-images.githubusercontent.com/74334127/166117283-c5340afc-305c-465c-b2ec-39c4bc33233f.png)
 
+<img src="https://user-images.githubusercontent.com/74334127/166117283-c5340afc-305c-465c-b2ec-39c4bc33233f.png" width=80% height=80%>
 We can use external websites to find out who registered the domain, such as [`whois.com`](https://www.whois.com).
 
-<img src="https://user-images.githubusercontent.com/74334127/166116672-db875f99-f941-4bd1-b14f-b03eeb9c9abc.png" width=75% height=75%>
+<img src="https://user-images.githubusercontent.com/74334127/166116672-db875f99-f941-4bd1-b14f-b03eeb9c9abc.png" width=50% height=50%>
 
 flag: `flag{ef67b2243b195eba43c7dc797b75d75b}`
 
@@ -46,10 +46,10 @@ I started off looking at the Github for this one, and found a contributor named 
 ![fc7db81a79f629225d300d9571b81bee](https://user-images.githubusercontent.com/74334127/166117044-c7a52e14-6828-48db-bd10-c179712bca0d.png)
 
 Looking at this, we can find the flag under Tiffany's name in the team section.
+
 ![c5ff30eec6f06363b4af0f0cba508ad3](https://user-images.githubusercontent.com/74334127/166117077-b3087375-f645-4039-8957-37b96739adff.png)
 
 flag: `flag{cddb59d78a6d50905340a62852e315c9}`
-The ex-employee you found was fired for "committing a secret to public github repositories". Find the committed secret, and use that to find confidential company information. The flag is in regular format.
 
 ## Keeber 3
 Points: **50**  
@@ -63,11 +63,15 @@ To find the committed secret, I turned to github to see if there were any commit
 
 ![e2ee5ce329729625bccb7edba74edea2](https://user-images.githubusercontent.com/74334127/166118066-38906403-938a-4c07-937e-3e40aeef4933.png)
 
-I wasn’t sure what asana was at first, but after googling it seems that it’s some software that Keeber uses. I went to [asana documentation](https://developers.asana.com/docs)  to see what we could do with this and came across a way to access the api:
-`curl https://app.asana.com/api/1.0/users/me \
-  -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a"`
+I wasn’t sure what asana was at first, but after googling it seems that it’s some software that Keeber uses. I went to [asana documentation](https://developers.asana.com/docs)  to see what we could do with this and came across a way to access the api: 
+
+```
+curl https://app.asana.com/api/1.0/users/me \  
+  -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a"
+```
 
 Replacing the string with the one in the github, we get the flag.
+
 ![19336fc8efdf87b56077c83c2c61bf99](https://user-images.githubusercontent.com/74334127/166118348-0c4e0d26-97b9-4987-9bf4-34e3c57fe753.png)
 
 flag: `flag{49305a2a9dcc503cb2b1fdeef8a7ac04}`
@@ -88,10 +92,10 @@ The hardest part for me in this challenge was creating a good word list to use. 
 
 I looked closer at the `security-evaluation-workflow` in the github and found a lot of strange words that did not exist like in “We strive to achieve *minivivi* and *clainebookahl* through this”. I figured one of these made up words would be the password, and compiled a wordlist of the 72 of them. Using hashcat, we get the password is `craccurrelss` in 4 mins, 35 seconds,
 
-![f4c9edcf7ceb6e6e3bf675f1e5b2227b](https://user-images.githubusercontent.com/74334127/166119070-a2d3873c-d61f-4a67-a611-f01b6ac78e6c.png)
-![7090d9a8a10c75d4e8ab2aa3c5213a0d (1)](https://user-images.githubusercontent.com/74334127/166119075-0a0619b3-facb-49f5-bb14-4997fbde9231.png)
+<img src="https://user-images.githubusercontent.com/74334127/166167290-64a40429-ebda-49cf-9d6e-38e1dca84df8.png" width=80% height=80%>
+<img src="https://user-images.githubusercontent.com/74334127/166167288-81ad1cfb-9533-4434-a6e8-3279a915d039.png" width=80% height=80%>
 
-Using Keepass and opening the .kdbx file with `craccurrelss` we get access to the info. If we perform auto-type on an entry, we get the flag.
+Using Keepass, we can open the .kdbx file with `craccurrelss` and get access to the passwords. After messing around for a bit I found that performing auto-type on an entry outputs the flag.
 
 https://user-images.githubusercontent.com/74334127/166119498-51880a70-baac-4c4a-ad38-df6661b023af.mp4
 
@@ -135,19 +139,19 @@ After all of the damage the ex-employee's mistakes caused to the company, the Ke
 ### Approach
 The hint tells us that we need to use `tif.hearts.science@gmail.com` to eventually find this new workplace. I tried to use [epieos](https://epieos.com/) to get more information. This only gives us her name and that she has a GitHub account, which we already knew. Since we are trying to find their new workplace, I figured they may have a social media account that would allow us to find this place (similar to a recent [OSINT](https://github.com/drewd314/WolvSec-CTF-2022-Writeups/blob/main/OSINT/Where%20in%20the%20world.md) I made for WolvSecCon). Linkedin produced no results, and I thought Instagram was not either. None of the Tiffany Douglas accounts on instagram seemed to be her, but searching `tif.hearts.science` we find an account that is hers. 
 
-
-![17673cd2f1ebb0661adcb0d9b6114b9c](https://user-images.githubusercontent.com/74334127/166164944-7c0d9bf5-1c1f-47cf-9f4c-b090f0fbadfe.png)
-![467c852a900004bc85f373585b6ca576](https://user-images.githubusercontent.com/74334127/166165087-5c9873af-dfc0-45a1-abd2-cacbbd26b384.jpg)
+<img src="https://user-images.githubusercontent.com/74334127/166164944-7c0d9bf5-1c1f-47cf-9f4c-b090f0fbadfe.png" width=80% height=80%>
+<img src="https://user-images.githubusercontent.com/74334127/166165087-5c9873af-dfc0-45a1-abd2-cacbbd26b384.jpg" width=80% height=80%>
 
 I started with this first post to find her work location. We can see a Google watermark on it, so I set out to find where this could be on Google Maps. On Tiffany's GitHub profile, she states that she is from Maine. This can also be deduced from the 207 area code on Keeber's website. Searching on the coast of Google Maps, we can easily see ferry routes denoted by blue dashed lines. I eliminated the minor cities in Maine and figured it must be Portland, which would also be why she called it “the city.”
-![600cbf92894ce9121ee6a7476b30f9ee](https://user-images.githubusercontent.com/74334127/166165214-c416558e-0fa2-4160-ae89-feecc130ff8a.png)
+<img src="https://user-images.githubusercontent.com/74334127/166165214-c416558e-0fa2-4160-ae89-feecc130ff8a.png" width=60% height=60%>
+
 After scanning these ports I eventually came across [this one](https://www.google.com/maps/@43.6568766,-70.2480553,3a,75y,178.19h,87.69t/data=!3m7!1e1!3m5!1seNEkVm0dTjxhVTHSt2B5Qw!2e0!5s20151101T000000!7i16384!8i8192) that looked like the image, and sure enough if we turn the date back to 2015 we see the same image that was on her instagram.
 
-![10ae1877d8273f57cde488ae9f8f6eb9](https://user-images.githubusercontent.com/74334127/166165291-de46434b-a2c8-4dca-9e94-73b975a878f0.jpg)
+<img src="https://user-images.githubusercontent.com/74334127/166165291-de46434b-a2c8-4dca-9e94-73b975a878f0.jpg" width=80% height=80%>
 
 From her first instagram post I see that there is a courtyard at the place she works at, so I start scanning for courtyards in portland on Google Maps to see if any of them had similar photospheres. This was not getting me anywhere, so I looked more at her Instagram and figured she works at a hotel from the “but the pool is indoors” meme. In hindsight, the bedding posts and courtyard were also indications of this. I searched for hotels in Portland and found one with a courtyard in satellite mode.
 
-![b6f267d2a1e0ec58a7e41d26d3be47af (1)](https://user-images.githubusercontent.com/74334127/166165784-de6b7aa7-6ffc-4a77-9de4-374901fdfaa2.jpg)
+<img src="https://user-images.githubusercontent.com/74334127/166165784-de6b7aa7-6ffc-4a77-9de4-374901fdfaa2.jpg" width=40% height=40%>
 
 Searching [this hotel on yelp](https://www.yelp.com/biz/residence-inn-by-marriott-portland-downtown-waterfront-portland), we find Tiffany’s review with the flag in it.
 
