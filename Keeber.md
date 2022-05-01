@@ -144,10 +144,16 @@ I started with this first post to find her work location. We can see a Google wa
 After scanning these ports I eventually came across [this one](https://www.google.com/maps/@43.6568766,-70.2480553,3a,75y,178.19h,87.69t/data=!3m7!1e1!3m5!1seNEkVm0dTjxhVTHSt2B5Qw!2e0!5s20151101T000000!7i16384!8i8192) that looked like the image, and sure enough if we turn the date back to 2015 we see the same image that was on her instagram.
 
 ![10ae1877d8273f57cde488ae9f8f6eb9](https://user-images.githubusercontent.com/74334127/166165291-de46434b-a2c8-4dca-9e94-73b975a878f0.jpg)
+
 From her first instagram post I see that there is a courtyard at the place she works at, so I start scanning for courtyards in portland on Google Maps to see if any of them had similar photospheres. This was not getting me anywhere, so I looked more at her Instagram and figured she works at a hotel from the “but the pool is indoors” meme. In hindsight, the bedding posts and courtyard were also indications of this. I searched for hotels in Portland and found one with a courtyard in satellite mode.
+
+![b6f267d2a1e0ec58a7e41d26d3be47af (1)](https://user-images.githubusercontent.com/74334127/166165784-de6b7aa7-6ffc-4a77-9de4-374901fdfaa2.jpg)
+
+Searching [this hotel on yelp](https://www.yelp.com/biz/residence-inn-by-marriott-portland-downtown-waterfront-portland), we find Tiffany’s review with the flag in it.
+
 ![c05cfd1be468f04145ff038ae94c7d16](https://user-images.githubusercontent.com/74334127/166165538-7f0ddfaa-a65f-4dd7-b622-a6af105901fc.png)
 
-flag: ` `
+flag: `flag{0d707179f4c993c5eb3ba9becfb046034}`
 
 ## Keeber 7
 Points: **474**  
