@@ -24,7 +24,7 @@ The first step in your investigation is to find more information about the compa
 ### Approach
 Starting off we get this prompt that the Keeber Security Group about them wanting us to perform an investigation on them using our OSINT knowledge. We see that someone registered a domain, so step 1 should be finding this website. Not too hard after a quick google search for Keeber Security Group.
 
-<img src="https://user-images.githubusercontent.com/74334127/166117283-c5340afc-305c-465c-b2ec-39c4bc33233f.png" width=80% height=80%>
+<img src="https://user-images.githubusercontent.com/74334127/166117283-c5340afc-305c-465c-b2ec-39c4bc33233f.png" width=100% height=100%>
 We can use external websites to find out who registered the domain, such as [`whois.com`](https://www.whois.com).
 
 <img src="https://user-images.githubusercontent.com/74334127/166116672-db875f99-f941-4bd1-b14f-b03eeb9c9abc.png" width=50% height=50%>
